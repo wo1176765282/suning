@@ -222,7 +222,7 @@ window.onload=function () {
                 a.style.color='';
             }
         }
-        if(ngFooter.offsetTop<=bh) {
+        if(ngFooter.offsetTop<=bh || hot_commodity[0].offsetTop-hot_commodity[0].offsetHeight >=bh) {
             boxLeft.style.display='none';
         } else{
             boxLeft.style.display='block';
