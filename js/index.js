@@ -23,54 +23,43 @@ window.onload=function () {
         lis[i].onmouseleave=function () {
             allCommodity_list_wrap[i].style.display="none";
         }
-        /*allCommodity_list_wrap[i].onmouseenter=function () {
-            lis[i].style.background="#fff";
-            let lis_a=lis[i].getElementsByTagName('a');
-            for (let k=0;k<lis_a.length;lis_a++){
-                lis_a[k].style.color="#666";
-            }
-
-        }*/
     }
 
 
     //轮播图
-/*    let banner=document.getElementsByClassName('banner')[0];
-    let bannerLis=banner.getElementsByTagName('li');
-    // console.log(banner, bannerLis);
-
+    let banner=document.querySelector('.banner');
+    let bannerLis=document.querySelectorAll('.banner li');
     let num=0;
-    let time=setInterval(lbt,1000);
-
-
-    /!*let circle=document.getElementsByClassName('circle')[0];
-    let btns=circle.getElementsByTagName('li');
-    console.log(circle);
-    console.log(btns);*!/
-    /!*let circle=document.getElementsByClassName('circle')[0];
-    console.log(circle);*!/
-
+    let time=setInterval(lbt,2500);
+    let btnS=document.querySelectorAll('.circle a');
 
     function lbt() {
         num++;
-        for (let i=0;i<bannerLis.length;i++){
-            bannerLis[i].style.zIndex='5';
-
-        }
-        if (num==bannerLis.length-1){
+        bannerLis.forEach(function (element,index) {
+            element.style.zIndex='5';
+            // btnS[index].removeClass("hot");
+            btnS[index].classList.remove("hot");
+        })
+        if (num==bannerLis.length){
             num=0;
         }
         bannerLis[num].style.zIndex='9';
+        btnS[num].className="hot";
     }
     function lbt1() {
-        for (let i=0;i<bannerLis.length;i++){
-            bannerLis[i].style.zIndex='5';
-        }
         if (num==0){
-            num=bannerLis.length-1;
+            num=bannerLis.length;
         }
-        bannerLis[num].style.zIndex='9';
         num--;
+
+        bannerLis.forEach(function (element,index) {
+            element.style.zIndex='5';
+            btnS[index].classList.remove("hot");
+        })
+
+        bannerLis[num].style.zIndex='9';
+        btnS[num].className="hot";
+
     }
     let banner_left=document.getElementsByClassName('banner_left')[0];
     let banner_right=document.getElementsByClassName('banner_right')[0];
@@ -84,10 +73,26 @@ window.onload=function () {
         clearInterval(time);
     }
     banner.onmouseleave=function () {
-        time=setInterval(lbt,1000);
-    }*/
+        time=setInterval(lbt,2500);
+    }
 
-    let banner=document.querySelector('.banner');
+    btnS.forEach(function (element,index) {
+        element.onclick=function () {
+            btnS.forEach(function (v) {
+                v.classList.remove("hot");
+            })
+            bannerLis.forEach(function (item) {
+                item.style.zIndex='5';
+            })
+            bannerLis[index].style.zIndex='9';
+            btnS[index].className="hot";
+        }
+    })
+
+
+
+    //二维下标
+   /* let banner=document.querySelector('.banner');
     let list=document.querySelectorAll('.banner li');
     let btnS=document.querySelectorAll('.circle a');
     let banner_left=document.querySelector('.banner_left');
@@ -148,11 +153,11 @@ window.onload=function () {
     banner.onmouseleave=function () {
         t=setInterval(move,2000);
     }
-
+*/
 
 
     //点点击跳转
-    for (let i=0;i<btnS.length;i++){
+    /*for (let i=0;i<btnS.length;i++){
         btnS[i].onclick=function () {
             if (i==now){
                 return;
@@ -175,7 +180,7 @@ window.onload=function () {
             }
         }
     }
-
+*/
 
 
 //左侧楼层跳转      懒加载
