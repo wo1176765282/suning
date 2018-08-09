@@ -192,20 +192,26 @@ window.onload=function () {
 
     // 点击跳转顶部
     boxLeftBottom.onclick=function(){
-        animate(document.body,{scrollTop:0});
-        animate(document.documentElement,{scrollTop:0});
+        document.body.scrollTop=0
+        document.documentElement.scrollTop=0
     }
 
     //楼层跳转
     let boxLeftLis=document.querySelectorAll('.box-left li');
-    // let boxLeftLisa=boxLeftLis.getElementsByTagName('a');
-
-
-
-
+    let flag=true;
     window.onscroll=function () {
+        //
+       /* pageXOffset 和 pageYOffset 属性返回文档在窗口左上角水平和垂直方向滚动的像素。
+
+pageXOffset 设置或返回当前页面相对于窗口显示区左上角的 X 位置。pageYOffset 设置或返回当前页面相对于窗口显示区左上角的 Y 位置。
+
+pageXOffset 和 pageYOffset 属性相等于 scrollX 和 scrollY 属性。
+
+这些属性是只读的。*/
+
+        let bh1= window.pageYOffset;
         let bh=document.body.scrollTop||document.documentElement.scrollTop;
-        if (bh+innerHeight>=hot_commodity[0].offsetTop+50) {
+        if (bh+innerHeight>hot_commodity[0].offsetTop+hot_commodity[0].offsetHeight || bh1>hot_commodity[0].offsetTop+hot_commodity[0].offsetHeight) {
             boxLeft.style.display='block';
         } else {
             boxLeft.style.display='none';
@@ -213,11 +219,30 @@ window.onload=function () {
 
         for (let i=0;i<boxLeftLis.length;i++){
             boxLeftLis[i].onclick=function () {
-                animate(document.body,{scrollTop:hot_commodity[i].offsetTop});
-                animate(document.documentElement,{scrollTop:hot_commodity[i].offsetTop});
+                //scrollTop属性不是style上的
+                /* document.body.scrollTop=hot_commodity[i].offsetTop;
+                 document.documentElement.scrollTop=hot_commodity[i].offsetTop;*/
+                boxLeftLis.forEach(function (element) {
+                    element.style.background='';
+                    let a=element.querySelector('a');
+                    a.style.color='';
+                })
+                let a=boxLeftLis[i].querySelector('a');
+                a.style.color='#fff';
+                boxLeftLis[i].style.background='#f90';
+                animate(document.body,{scrollTop:hot_commodity[i].offsetTop-120});
+                animate(document.documentElement,{scrollTop:hot_commodity[i].offsetTop-120},function () {
+                    flag=true
+                });
+                /*document.body.scrollTop=hot_commodity[i].offsetTop+50;
+                document.documentElement.scrollTop=hot_commodity[i].offsetTop+50;*/
+                flag=false
 
             }
-            if (hot_commodity[i].offsetTop <=bh+innerHeight && bh+innerHeight< hot_commodity[i].offsetTop+hot_commodity[i].offsetHeight){
+            if (hot_commodity[i].offsetTop <bh+innerHeight-300 && bh+innerHeight-300< hot_commodity[i].offsetTop+hot_commodity[i].offsetHeight){
+                if (!flag) {
+                    return;
+                }
                 boxLeftLis[i].style.background='#f90';
                 let a=boxLeftLis[i].querySelector('a');
                 a.style.color='#fff';
@@ -227,18 +252,78 @@ window.onload=function () {
                 a.style.color='';
             }
         }
-        if(ngFooter.offsetTop<=bh || hot_commodity[0].offsetTop-hot_commodity[0].offsetHeight >=bh) {
+        if(ngFooter.offsetTop-ngFooter.offsetHeight<bh || hot_commodity[0].offsetTop-hot_commodity[0].offsetHeight >bh) {
             boxLeft.style.display='none';
         } else{
             boxLeft.style.display='block';
         }
-
-
-
     }
 
 
 
+    //顶部选项卡
+    let webNavigation=document.querySelector(".webNavigation");
+    let webService=document.querySelectorAll(".webService");
+    let dh_box=document.querySelector(".dh_box");
+    let sj_box=document.querySelector(".sj_box")
+    let sj_box1=document.querySelector(".sj_box1")
+    let myOrder=document.querySelectorAll(".myOrder")
+    let mineBox=document.querySelector(".mineBox")
+    let myShopping=document.querySelector(".myShopping")
+    let shoppingBox=document.querySelector(".shoppingBox")
+
+    webNavigation.onmouseenter=function () {
+        webNavigation.style.background="#fff";
+        dh_box.style.height="auto"
+        dh_box.style.display="block"
+    }
+    webNavigation.onmouseleave=function () {
+        webNavigation.style.background="";
+        dh_box.style.height=0
+        dh_box.style.display="none"
+    }
+
+    webService[0].onmouseenter=function () {
+        webService[0].style.background="#fff";
+        sj_box.style.height="auto"
+        sj_box.style.display="block"
+    }
+    webService[0].onmouseleave=function () {
+        webService[0].style.background="";
+        sj_box.style.height=0
+        sj_box.style.display="none"
+    }
+
+    webService[1].onmouseenter=function () {
+        webService[1].style.background="#fff";
+        sj_box1.style.height="auto"
+        sj_box1.style.display="block"
+    }
+    webService[1].onmouseleave=function () {
+        webService[1].style.background="";
+        sj_box1.style.height=0
+        sj_box1.style.display="none"
+    }
+
+    myOrder[0].onmouseenter=function () {
+        myOrder[0].style.background="#fff";
+        mineBox.style.height="auto"
+        mineBox.style.display="block"
+    }
+    myOrder[0].onmouseleave=function () {
+        myOrder[0].style.background="";
+        mineBox.style.height=0
+        mineBox.style.display="none"
+    }
+
+    myShopping.onmouseenter=function () {
+        myShopping.style.background="#fff";
+        shoppingBox.style.display="block"
+    }
+    myShopping.onmouseleave=function () {
+        myShopping.style.background="";
+        shoppingBox.style.display="none"
+    }
 
 
 

@@ -4,8 +4,9 @@
     padding:0;
     list-style: none;
 }
-body{
+body,html{
     background: #f2f2f2;
+    transition: .2s;
 }
 a{
     text-decoration: none;
@@ -37,7 +38,76 @@ header a{
     width:85px;
     height:35px;
     float: left;
+    position: relative;
+    /*overflow: hidden;*/
 }
+.dh_box{
+    width: 988px;
+    height: 0;
+    padding: 20px 0;
+    position: absolute;
+    top: 35px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    z-index: 22;
+    display: none;
+    overflow: hidden;
+}
+.dh_box dl{
+    float: left;
+    width: 176px;
+    border-right: 1px solid #eee;
+    padding-left: 20px;
+}
+.dh_box dl:last-child{
+    border-right: 0;
+}
+.dh_box dl dt{
+    height: 25px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 17px;
+}
+.dh_box dl dd {
+    width: 100%;
+    overflow: hidden;
+}
+.dh_box dl dd p{
+    float: left;
+    height: 25px;
+    width: 78px;
+    line-height: 25px;
+    cursor: pointer;
+}
+.dh_box dl dd p:hover{
+    color: #ffaa00;
+}
+.sj_box{
+    width: 135px;
+    padding-top: 5px;
+    position: absolute;
+    /*left: 0;*/
+    right: auto;
+    top: 35px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    background: #fff;
+    z-index: 22;
+    display: none;
+    overflow: hidden;
+}
+.sj_box a{
+    display: block;
+    width: 71px;
+    height: 28px;
+    line-height: 28px;
+    color: #666;
+}
+.sj_box1{
+    right: 0;
+}
+
 .header_left a{
     font-size: 12px;
     font-weight: 400;
@@ -57,6 +127,7 @@ header a{
     width:81px;
     height:35px;
     float: left;
+    position: relative;
 }
 .location{
     width:70px;
@@ -113,12 +184,53 @@ header a{
     color: #ff6600;
 }
 .myOrder{
-    width:61px;
+    width:70px;
     height:35px;
+    position: relative;
+}
+.mineBox{
+    width: 81px;
+    padding-bottom: 5px;
+    position: absolute;
+    top: 35px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    background: #fff;
+    left: 0;
+    z-index: 22;
+    overflow: hidden;
+    transition: .1s;
+    display: none;
+}
+.mineBox p{
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    width: 71px;
+    color: #666;
 }
 .myShopping{
     width:81px;
     height:35px;
+    position: relative;
+}
+.shoppingBox{
+    width: 280px;
+    height: 400px;
+    background: #fff;
+    overflow: hidden;
+    padding-bottom: 0;
+    font-size: 20px;
+    line-height: 100px;
+    text-align: center;
+    color: #ffaa00;
+    position: absolute;
+    top: 35px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    left: 0;
+    z-index: 22;
+    display: none;
 }
 .myShopping i:first-child{
     font-size: 12px;
@@ -185,6 +297,7 @@ input{
     box-sizing: border-box;
     border:2px solid #ff9900;
     color: #cccccc;
+    outline: none;
 }
 .search_box_right{
     display: block;
@@ -248,9 +361,9 @@ input{
 .nav{
     width:100%;
     height:486px;
-    /*background: #fff;*/
+    background: #fff;
     position: relative;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 
 
@@ -267,7 +380,7 @@ input{
     height:38px;
     background: #fff;
     float: left;
-    padding-right: 100px;
+    padding-right: 5px;
     padding-left: 23px;
     box-sizing: border-box;
     display: flex;
@@ -290,7 +403,7 @@ input{
     height:17px;
     position: absolute;
     top:0;
-    left:223px;
+    left:219px;
     background: url("../img/index.png") no-repeat -345px -213px;
 }
 .classify li:hover a{
@@ -1443,6 +1556,7 @@ input{
 .hot_commodity{
     width: 1190px;
     height: auto;
+    padding-top: 50px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -1667,6 +1781,7 @@ input{
     margin-left: -670px;
     background: #f8f8f8;
     display: none;
+    transition: .2s;
 }
 .left_toplogo{
     width: 45px;
@@ -1679,6 +1794,7 @@ input{
 .box-left ul{
     width: 68px;
     height: 290px;
+    /*transition: .5s;*/
 }
 .box-left ul li{
     width: 68px;
@@ -1851,6 +1967,8 @@ input{
 .box-right-bg-top-img1{
     width: 100%;
     height: 30px;
+    padding-top: 5px;
+    box-sizing: border-box;
 }
 .box-right-bg-top a .box-right-bg-top-img1:hover{
     background: #ffaa00;
