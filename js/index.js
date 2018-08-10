@@ -27,14 +27,17 @@ window.onload=function () {
 
 
     //轮播图
+    let flag1=true;
     let banner=document.querySelector('.banner');
     let bannerLis=document.querySelectorAll('.banner li');
     let num=0;
     let time=setInterval(lbt,2500);
     let btnS=document.querySelectorAll('.circle a');
-
     function lbt() {
         num++;
+        if (!flag1) {
+            return;
+        }
         bannerLis.forEach(function (element,index) {
             element.style.zIndex='5';
             // btnS[index].removeClass("hot");
@@ -51,12 +54,10 @@ window.onload=function () {
             num=bannerLis.length;
         }
         num--;
-
         bannerLis.forEach(function (element,index) {
             element.style.zIndex='5';
             btnS[index].classList.remove("hot");
         })
-
         bannerLis[num].style.zIndex='9';
         btnS[num].className="hot";
 
@@ -75,7 +76,6 @@ window.onload=function () {
     banner.onmouseleave=function () {
         time=setInterval(lbt,2500);
     }
-
     btnS.forEach(function (element,index) {
         element.onclick=function () {
             btnS.forEach(function (v) {
@@ -86,7 +86,9 @@ window.onload=function () {
             })
             bannerLis[index].style.zIndex='9';
             btnS[index].className="hot";
+            num=index;
         }
+
     })
 
 
@@ -237,7 +239,6 @@ pageXOffset 和 pageYOffset 属性相等于 scrollX 和 scrollY 属性。
                 /*document.body.scrollTop=hot_commodity[i].offsetTop+50;
                 document.documentElement.scrollTop=hot_commodity[i].offsetTop+50;*/
                 flag=false
-
             }
             if (hot_commodity[i].offsetTop <bh+innerHeight-300 && bh+innerHeight-300< hot_commodity[i].offsetTop+hot_commodity[i].offsetHeight){
                 if (!flag) {
